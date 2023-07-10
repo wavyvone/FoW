@@ -1,0 +1,639 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C1567F5A2A5A71FE00C347C9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1567F592A5A71FE00C347C9 /* LoginView.swift */; };
+		C1738C5D2A5A093A009F9A76 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1738C5C2A5A093A009F9A76 /* SignupView.swift */; };
+		C1B6142B2A591DFE0039D8B7 /* FOWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B6142A2A591DFE0039D8B7 /* FOWApp.swift */; };
+		C1B6142D2A591DFE0039D8B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B6142C2A591DFE0039D8B7 /* ContentView.swift */; };
+		C1B6142F2A591E010039D8B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1B6142E2A591E010039D8B7 /* Assets.xcassets */; };
+		C1B614322A591E010039D8B7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1B614312A591E010039D8B7 /* Preview Assets.xcassets */; };
+		C1B6143C2A591E010039D8B7 /* FOWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B6143B2A591E010039D8B7 /* FOWTests.swift */; };
+		C1B614462A591E010039D8B7 /* FOWUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B614452A591E010039D8B7 /* FOWUITests.swift */; };
+		C1B614482A591E010039D8B7 /* FOWUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B614472A591E010039D8B7 /* FOWUITestsLaunchTests.swift */; };
+		C1B614552A59209F0039D8B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B614542A59209F0039D8B7 /* Extensions.swift */; };
+		C1B6145F2A593D690039D8B7 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = C1B6145E2A593D690039D8B7 /* SwiftyGif */; };
+		C1B614642A593E0E0039D8B7 /* duck.gif in Resources */ = {isa = PBXBuildFile; fileRef = C1B614632A593E0D0039D8B7 /* duck.gif */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1B614382A591E010039D8B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1B6141F2A591DFE0039D8B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1B614262A591DFE0039D8B7;
+			remoteInfo = FOW;
+		};
+		C1B614422A591E010039D8B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1B6141F2A591DFE0039D8B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1B614262A591DFE0039D8B7;
+			remoteInfo = FOW;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C1567F592A5A71FE00C347C9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C1738C5C2A5A093A009F9A76 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		C1B614272A591DFE0039D8B7 /* FOW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOW.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B6142A2A591DFE0039D8B7 /* FOWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOWApp.swift; sourceTree = "<group>"; };
+		C1B6142C2A591DFE0039D8B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C1B6142E2A591E010039D8B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C1B614312A591E010039D8B7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C1B614372A591E010039D8B7 /* FOWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FOWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B6143B2A591E010039D8B7 /* FOWTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOWTests.swift; sourceTree = "<group>"; };
+		C1B614412A591E010039D8B7 /* FOWUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FOWUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B614452A591E010039D8B7 /* FOWUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOWUITests.swift; sourceTree = "<group>"; };
+		C1B614472A591E010039D8B7 /* FOWUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOWUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C1B614542A59209F0039D8B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C1B614632A593E0D0039D8B7 /* duck.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = duck.gif; path = "../../../Swift Example/FOW App/duck.gif"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1B614242A591DFE0039D8B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1B6145F2A593D690039D8B7 /* SwiftyGif in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B614342A591E010039D8B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B6143E2A591E010039D8B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C1B6141E2A591DFE0039D8B7 = {
+			isa = PBXGroup;
+			children = (
+				C1B614292A591DFE0039D8B7 /* FOW */,
+				C1B6143A2A591E010039D8B7 /* FOWTests */,
+				C1B614442A591E010039D8B7 /* FOWUITests */,
+				C1B614282A591DFE0039D8B7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C1B614282A591DFE0039D8B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1B614272A591DFE0039D8B7 /* FOW.app */,
+				C1B614372A591E010039D8B7 /* FOWTests.xctest */,
+				C1B614412A591E010039D8B7 /* FOWUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1B614292A591DFE0039D8B7 /* FOW */ = {
+			isa = PBXGroup;
+			children = (
+				C1B614622A593DCA0039D8B7 /* gif */,
+				C1B6142A2A591DFE0039D8B7 /* FOWApp.swift */,
+				C1B6142C2A591DFE0039D8B7 /* ContentView.swift */,
+				C1738C5C2A5A093A009F9A76 /* SignupView.swift */,
+				C1567F592A5A71FE00C347C9 /* LoginView.swift */,
+				C1B614542A59209F0039D8B7 /* Extensions.swift */,
+				C1B6142E2A591E010039D8B7 /* Assets.xcassets */,
+				C1B614302A591E010039D8B7 /* Preview Content */,
+			);
+			path = FOW;
+			sourceTree = "<group>";
+		};
+		C1B614302A591E010039D8B7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C1B614312A591E010039D8B7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C1B6143A2A591E010039D8B7 /* FOWTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1B6143B2A591E010039D8B7 /* FOWTests.swift */,
+			);
+			path = FOWTests;
+			sourceTree = "<group>";
+		};
+		C1B614442A591E010039D8B7 /* FOWUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C1B614452A591E010039D8B7 /* FOWUITests.swift */,
+				C1B614472A591E010039D8B7 /* FOWUITestsLaunchTests.swift */,
+			);
+			path = FOWUITests;
+			sourceTree = "<group>";
+		};
+		C1B614622A593DCA0039D8B7 /* gif */ = {
+			isa = PBXGroup;
+			children = (
+				C1B614632A593E0D0039D8B7 /* duck.gif */,
+			);
+			path = gif;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C1B614262A591DFE0039D8B7 /* FOW */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1B6144B2A591E010039D8B7 /* Build configuration list for PBXNativeTarget "FOW" */;
+			buildPhases = (
+				C1B614232A591DFE0039D8B7 /* Sources */,
+				C1B614242A591DFE0039D8B7 /* Frameworks */,
+				C1B614252A591DFE0039D8B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FOW;
+			packageProductDependencies = (
+				C1B6145E2A593D690039D8B7 /* SwiftyGif */,
+			);
+			productName = FOW;
+			productReference = C1B614272A591DFE0039D8B7 /* FOW.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C1B614362A591E010039D8B7 /* FOWTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1B6144E2A591E010039D8B7 /* Build configuration list for PBXNativeTarget "FOWTests" */;
+			buildPhases = (
+				C1B614332A591E010039D8B7 /* Sources */,
+				C1B614342A591E010039D8B7 /* Frameworks */,
+				C1B614352A591E010039D8B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1B614392A591E010039D8B7 /* PBXTargetDependency */,
+			);
+			name = FOWTests;
+			productName = FOWTests;
+			productReference = C1B614372A591E010039D8B7 /* FOWTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C1B614402A591E010039D8B7 /* FOWUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1B614512A591E010039D8B7 /* Build configuration list for PBXNativeTarget "FOWUITests" */;
+			buildPhases = (
+				C1B6143D2A591E010039D8B7 /* Sources */,
+				C1B6143E2A591E010039D8B7 /* Frameworks */,
+				C1B6143F2A591E010039D8B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1B614432A591E010039D8B7 /* PBXTargetDependency */,
+			);
+			name = FOWUITests;
+			productName = FOWUITests;
+			productReference = C1B614412A591E010039D8B7 /* FOWUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1B6141F2A591DFE0039D8B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					C1B614262A591DFE0039D8B7 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					C1B614362A591E010039D8B7 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = C1B614262A591DFE0039D8B7;
+					};
+					C1B614402A591E010039D8B7 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = C1B614262A591DFE0039D8B7;
+					};
+				};
+			};
+			buildConfigurationList = C1B614222A591DFE0039D8B7 /* Build configuration list for PBXProject "FOW" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C1B6141E2A591DFE0039D8B7;
+			packageReferences = (
+				C1B6145D2A593D690039D8B7 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+			);
+			productRefGroup = C1B614282A591DFE0039D8B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1B614262A591DFE0039D8B7 /* FOW */,
+				C1B614362A591E010039D8B7 /* FOWTests */,
+				C1B614402A591E010039D8B7 /* FOWUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C1B614252A591DFE0039D8B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1B614322A591E010039D8B7 /* Preview Assets.xcassets in Resources */,
+				C1B614642A593E0E0039D8B7 /* duck.gif in Resources */,
+				C1B6142F2A591E010039D8B7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B614352A591E010039D8B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B6143F2A591E010039D8B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1B614232A591DFE0039D8B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1738C5D2A5A093A009F9A76 /* SignupView.swift in Sources */,
+				C1B6142D2A591DFE0039D8B7 /* ContentView.swift in Sources */,
+				C1B614552A59209F0039D8B7 /* Extensions.swift in Sources */,
+				C1567F5A2A5A71FE00C347C9 /* LoginView.swift in Sources */,
+				C1B6142B2A591DFE0039D8B7 /* FOWApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B614332A591E010039D8B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1B6143C2A591E010039D8B7 /* FOWTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B6143D2A591E010039D8B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1B614462A591E010039D8B7 /* FOWUITests.swift in Sources */,
+				C1B614482A591E010039D8B7 /* FOWUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1B614392A591E010039D8B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1B614262A591DFE0039D8B7 /* FOW */;
+			targetProxy = C1B614382A591E010039D8B7 /* PBXContainerItemProxy */;
+		};
+		C1B614432A591E010039D8B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1B614262A591DFE0039D8B7 /* FOW */;
+			targetProxy = C1B614422A591E010039D8B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C1B614492A591E010039D8B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C1B6144A2A591E010039D8B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C1B6144C2A591E010039D8B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FOW/Preview Content\"";
+				DEVELOPMENT_TEAM = P7D73HX6ZV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavyvone.FOW;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C1B6144D2A591E010039D8B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FOW/Preview Content\"";
+				DEVELOPMENT_TEAM = P7D73HX6ZV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavyvone.FOW;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C1B6144F2A591E010039D8B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7D73HX6ZV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavyvone.FOWTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FOW.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FOW";
+			};
+			name = Debug;
+		};
+		C1B614502A591E010039D8B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7D73HX6ZV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavyvone.FOWTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FOW.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FOW";
+			};
+			name = Release;
+		};
+		C1B614522A591E010039D8B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7D73HX6ZV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavyvone.FOWUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FOW;
+			};
+			name = Debug;
+		};
+		C1B614532A591E010039D8B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7D73HX6ZV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavyvone.FOWUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FOW;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C1B614222A591DFE0039D8B7 /* Build configuration list for PBXProject "FOW" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1B614492A591E010039D8B7 /* Debug */,
+				C1B6144A2A591E010039D8B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1B6144B2A591E010039D8B7 /* Build configuration list for PBXNativeTarget "FOW" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1B6144C2A591E010039D8B7 /* Debug */,
+				C1B6144D2A591E010039D8B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1B6144E2A591E010039D8B7 /* Build configuration list for PBXNativeTarget "FOWTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1B6144F2A591E010039D8B7 /* Debug */,
+				C1B614502A591E010039D8B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1B614512A591E010039D8B7 /* Build configuration list for PBXNativeTarget "FOWUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1B614522A591E010039D8B7 /* Debug */,
+				C1B614532A591E010039D8B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1B6145D2A593D690039D8B7 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1B6145E2A593D690039D8B7 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1B6145D2A593D690039D8B7 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C1B6141F2A591DFE0039D8B7 /* Project object */;
+}

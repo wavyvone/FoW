@@ -1,0 +1,11 @@
+1. Dependencies cannot be deleted on the sidebar but on the project main screen
+instead.
+
+2. Cannot add GIFs to Assets at all. Can only create groups and add gif there.
+
+3. When adding out of date packages, runs its automatically even though it is
+greyed out. Should be automatic to not add it in when building the app.
+
+4. TextField greyed out placeholder text cannot change color at all!
+
+5.
