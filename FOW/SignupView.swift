@@ -104,6 +104,7 @@ struct SignupView: View {
                                 
                             } // VStack with Text, TextField, and Sign up Button
                             
+                            // ---- or ---- 
                             LabelledDivider(label: "or")
                             
                             Text("Sign up with your social media account")
