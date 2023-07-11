@@ -11,3 +11,6 @@ greyed out. Should be automatic to not add it in when building the app.
 5. Divider() cannot control thickness directly... needs to use frame and overlay
 
 6.690804083540-akffksn7tkn7arrhgnciejblommccu77.apps.googleusercontent.com 
+
+7. When using navigationView Block theres only 1 in content view and NOT Others
+point is that there should be a check for it you know what the. 

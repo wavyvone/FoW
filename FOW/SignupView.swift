@@ -14,6 +14,7 @@ struct SignupView: View {
     // Custom RGB Colors here
     let lilac = UIColor(rgb: 0xA09CB0)
     let signUpBC = UIColor(rgb: 0x987D7C)
+    let lightBlue = UIColor(rgb: 0x071C34)
     let color = Color(.white)
     let horizontalPadding: Int = 15
     
@@ -32,98 +33,110 @@ struct SignupView: View {
     
     
     var body: some View {
-        
-       NavigationView {
             
-            ZStack{
-                // Add color background
-                Color(lilac).ignoresSafeArea()
-                
-                VStack{
+        ZStack{
+            // Add color background
+            Color(lilac).ignoresSafeArea()
+            
+            VStack{
+                Spacer()
+                HStack {
                     Spacer()
-                    HStack {
-                        Spacer()
+                    
+                    VStack{
+                        VStack(alignment: .leading) {
+                            
+                            // Welcome sign
+                            Text("Hello, let's get exploring!")
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(.white)
+                            Text("Create a new account!")
+                                .foregroundColor(.white)
+                                .padding(.bottom, 20)
+                            
+                            
+                            TextField("Name", text: $uname)
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                .padding(.horizontal, 20)
+                                .cornerRadius(16)
+                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                            
+                            
+                            TextField("Email", text: $email)
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                .padding(.horizontal, 20)
+                                .cornerRadius(16)
+                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                            
+                            
+                            SecureField("Password", text: $password)
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                .padding(.horizontal, 20)
+                                .cornerRadius(16)
+                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                            
+                            
+                            SecureField("Enter password again", text: $passwordRe)
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                .padding(.horizontal, 20)
+                                .cornerRadius(16)
+                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                            
+                            
+                            Section {
+                                Button(action: something) {
+                                    Text("Sign up")
+                                        .padding(.vertical, 5)
+                                        .padding(.horizontal, 20)
+                                        .frame(width: UIScreen.main.bounds.width-80)
+                                }.buttonStyle(.borderedProminent)
+                                    .tint(Color(signUpBC))
+                                    .cornerRadius(16)
+                                    .accentColor(.black)
+                                    .padding(.vertical, 40)
+                            }.disabled(uname.isEmpty || email.isEmpty || password.isEmpty || passwordRe.isEmpty)
+                            
+                        } // VStack with Text, TextField, and Sign up Button
                         
-                        VStack{
-                            VStack(alignment: .leading) {
-                                
-                                // Welcome sign
-                                Text("Hello, let's get exploring!")
-                                    .font(.largeTitle)
-                                    .bold()
-                                    .foregroundColor(.white)
-                                Text("Create a new account!")
-                                    .foregroundColor(.white)
-                                    .padding(.bottom, 40)
-                                
-                                
-                                TextField("Name", text: $uname)
-                                    .foregroundColor(.white)
-                                    .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                    .padding(.horizontal, 20)
-                                    .cornerRadius(16)
-                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                
-                                
-                                TextField("Email", text: $email)
-                                    .foregroundColor(.white)
-                                    .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                    .padding(.horizontal, 20)
-                                    .cornerRadius(16)
-                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                
-                                
-                                SecureField("Password", text: $password)
-                                    .foregroundColor(.white)
-                                    .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                    .padding(.horizontal, 20)
-                                    .cornerRadius(16)
-                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                
-                                
-                                SecureField("Enter password again", text: $passwordRe)
-                                    .foregroundColor(.white)
-                                    .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                    .padding(.horizontal, 20)
-                                    .cornerRadius(16)
-                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                
-                                
-                                Section {
-                                    Button(action: something) {
-                                        Text("Sign up")
-                                            .padding(.vertical, 5)
-                                            .padding(.horizontal, 20)
-                                            .frame(width: UIScreen.main.bounds.width-80)
-                                    }.buttonStyle(.borderedProminent)
-                                        .tint(Color(signUpBC))
-                                        .cornerRadius(16)
-                                        .accentColor(.black)
-                                        .padding(.vertical, 40)
-                                }.disabled(uname.isEmpty || email.isEmpty || password.isEmpty || passwordRe.isEmpty)
-                                
-                            } // VStack with Text, TextField, and Sign up Button
-                            
-                            // ---- or ---- 
-                            LabelledDivider(label: "or")
-                            
-                            Text("Sign up with your social media account")
+                        // ---- or ----
+                        LabelledDivider(label: "or")
+                        
+                        Text("Sign up with your social media account")
+                            .font(.footnote)
+                            .foregroundColor(color)
+                        GoogleSignInButton(action: handleSignInButton)
+                        
+                        // Already have account?
+                        HStack{
+                            Text("Already have an account?")
                                 .font(.footnote)
                                 .foregroundColor(color)
-                            GoogleSignInButton(action: handleSignInButton)
                             
-                        } // Outer Vstack
-                        
-                        Spacer()
-                    } // HStack of Spacer
+                            // Sign Up Here
+                            NavigationLink(destination: LoginView()) {
+                                Text("Log in")
+                                    .font(.footnote)
+                                    .bold()
+                                    .foregroundColor(Color(lightBlue))
+                            }
+                        }.padding(.top, 80)
+                    } // Outer Vstack
+                    
                     Spacer()
-                }.ignoresSafeArea(.keyboard, edges: .bottom) // Vstack of Spacern
-                // Add alignment guide
-                                
-            }
+                } // HStack of Spacer
+                Spacer()
+            }.ignoresSafeArea(.keyboard, edges: .bottom) // Vstack of Spacern
+            // Add alignment guide
+                            
+        } // ZStack
 
-        }
-    }
+    } // body
+
     func handleSignInButton() {
         guard let rootViewController = keyWindow?.rootViewController else {
                 return
