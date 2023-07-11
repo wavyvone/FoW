@@ -8,4 +8,6 @@ greyed out. Should be automatic to not add it in when building the app.
 
 4. TextField greyed out placeholder text cannot change color at all!
 
-5.
+5. Divider() cannot control thickness directly... needs to use frame and overlay
+
+6.690804083540-akffksn7tkn7arrhgnciejblommccu77.apps.googleusercontent.com 

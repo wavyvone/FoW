@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     var body: some View {
         let skyBlue = UIColor(rgb: 0xC0FDFB)
-        let logInColor = UIColor(rgb: 0xC0FDFB)
+        //let logInColor = UIColor(rgb: 0xC0FDFB)
         
         // Proper credentials
         //@State private var email: String = ""

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//
 extension UIColor {
    convenience init(red: Int, green: Int, blue: Int) {
        assert(red >= 0 && red <= 255, "Invalid red component")
@@ -25,3 +26,37 @@ extension UIColor {
        )
    }
 }
+
+
+// https://stackoverflow.com/questions/56619043/show-line-separator-view-in-swiftui
+struct LabelledDivider: View {
+
+    let label: String
+    let horizontalPadding: CGFloat
+    let color: Color
+
+    init(label: String, horizontalPadding: CGFloat = 15, color: Color = .white) {
+        self.label = label
+        self.horizontalPadding = horizontalPadding
+        self.color = color
+    }
+
+    var body: some View {
+        HStack {
+            line
+            Text(label).foregroundColor(color)
+            line
+        }
+    }
+
+    var line: some View {
+        VStack {
+            Divider().background(color)
+                .frame(height: 2)
+                .overlay(color)
+        }.padding(horizontalPadding)
+    }
+}
+
+
+

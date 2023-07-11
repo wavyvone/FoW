@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C1567F5A2A5A71FE00C347C9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1567F592A5A71FE00C347C9 /* LoginView.swift */; };
+		C172537E2A5CECC300651C60 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C172537D2A5CECC300651C60 /* GoogleSignIn */; };
+		C17253802A5CECC300651C60 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C172537F2A5CECC300651C60 /* GoogleSignInSwift */; };
 		C1738C5D2A5A093A009F9A76 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1738C5C2A5A093A009F9A76 /* SignupView.swift */; };
 		C1B6142B2A591DFE0039D8B7 /* FOWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B6142A2A591DFE0039D8B7 /* FOWApp.swift */; };
 		C1B6142D2A591DFE0039D8B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B6142C2A591DFE0039D8B7 /* ContentView.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		C1567F592A5A71FE00C347C9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C17253832A5D079B00651C60 /* credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
+		C17253852A5D07CE00651C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		C1738C5C2A5A093A009F9A76 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		C1B614272A591DFE0039D8B7 /* FOW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B6142A2A591DFE0039D8B7 /* FOWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOWApp.swift; sourceTree = "<group>"; };
@@ -60,7 +64,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C17253802A5CECC300651C60 /* GoogleSignInSwift in Frameworks */,
 				C1B6145F2A593D690039D8B7 /* SwiftyGif in Frameworks */,
+				C172537E2A5CECC300651C60 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +90,7 @@
 		C1B6141E2A591DFE0039D8B7 = {
 			isa = PBXGroup;
 			children = (
+				C17253832A5D079B00651C60 /* credentials.plist */,
 				C1B614292A591DFE0039D8B7 /* FOW */,
 				C1B6143A2A591E010039D8B7 /* FOWTests */,
 				C1B614442A591E010039D8B7 /* FOWUITests */,
@@ -104,6 +111,7 @@
 		C1B614292A591DFE0039D8B7 /* FOW */ = {
 			isa = PBXGroup;
 			children = (
+				C17253852A5D07CE00651C60 /* Info.plist */,
 				C1B614622A593DCA0039D8B7 /* gif */,
 				C1B6142A2A591DFE0039D8B7 /* FOWApp.swift */,
 				C1B6142C2A591DFE0039D8B7 /* ContentView.swift */,
@@ -167,6 +175,8 @@
 			name = FOW;
 			packageProductDependencies = (
 				C1B6145E2A593D690039D8B7 /* SwiftyGif */,
+				C172537D2A5CECC300651C60 /* GoogleSignIn */,
+				C172537F2A5CECC300651C60 /* GoogleSignInSwift */,
 			);
 			productName = FOW;
 			productReference = C1B614272A591DFE0039D8B7 /* FOW.app */;
@@ -242,6 +252,7 @@
 			mainGroup = C1B6141E2A591DFE0039D8B7;
 			packageReferences = (
 				C1B6145D2A593D690039D8B7 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				C172537C2A5CECC300651C60 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = C1B614282A591DFE0039D8B7 /* Products */;
 			projectDirPath = "";
@@ -452,6 +463,7 @@
 				DEVELOPMENT_TEAM = P7D73HX6ZV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FOW/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -481,6 +493,7 @@
 				DEVELOPMENT_TEAM = P7D73HX6ZV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FOW/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -617,6 +630,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C172537C2A5CECC300651C60 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		C1B6145D2A593D690039D8B7 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
@@ -628,6 +649,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C172537D2A5CECC300651C60 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C172537C2A5CECC300651C60 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		C172537F2A5CECC300651C60 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C172537C2A5CECC300651C60 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		C1B6145E2A593D690039D8B7 /* SwiftyGif */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C1B6145D2A593D690039D8B7 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
