@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+// https://stackoverflow.com/questions/61875244/swiftui-cant-get-firebase-firestore-instance
+import FirebaseFirestore
 //import GoogleSignIn
 //import GoogleSignInSwift
 
@@ -196,14 +198,51 @@ struct SignupView: View {
                 }
                 //return
             } else {
+                createUserDocument()
                 print("SIGN UP SUCCESS")//continue to app
                 
             }
         }
         // After create user go to main map view
         // TODO Need to figure out this step
+    } // signuP end
+    
+    //https://stackoverflow.com/questions/46590155/firestore-permission-denied-missing-or-insufficient-permissions
+    func createUserDocument() {
+        // https://codewithchris.com/swift-string/
+        let atSign = email.firstIndex(of: "@")!
+        let documentId = email[..<atSign]
+    
+        //let subcollection: String = "fog_of_war"
         
-    }
+        guard !documentId.isEmpty else {
+            print("User name cannot be empty.")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        db.collection("users").document(String(documentId)).setData([
+            "name": uname
+            // Here I want to create a name field with their name
+        ]) { error in
+            if let error = error {
+                print("Error creating user document: \(error.localizedDescription)")
+            } else {
+                print("User document created with the custom ID.")
+            }
+        }
+        // Subcollections must be created after user logs in
+        /*if createdDocument {
+            db.collection("users").document(String(documentId)).collection(subcollection).document() { error in
+                if let error = error {
+                    print("Error creating user document: \(error.localizedDescription)")
+                } else {
+                    print("User collection created.")
+                }
+            }
+        } //create Document*/
+            
+    } //Created user Document func
     
 }
 
