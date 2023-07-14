@@ -14,3 +14,14 @@ greyed out. Should be automatic to not add it in when building the app.
 
 7. When using navigationView Block theres only 1 in content view and NOT Others
 point is that there should be a check for it you know what the. 
+
+8.
+https://stackoverflow.com/questions/31239934/disable-autolayout-constraint-error-messages-in-debug-console-output-in-xcode
+used this to make the contraints error go away. Used shift+cmd+< and under run
+its the contraint NO
+
+9. Which Database to use
+SQLite online
+Firebase reddit- Winner, since I need to synchronize user location and maps
+
+

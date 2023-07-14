@@ -12,58 +12,57 @@ import SwiftyGif
 struct ContentView: View {
     let myBlue = UIColor(rgb: 0xABDAE1)
     let logInColor = UIColor(rgb: 0xB3B3B3)
-    let backColor = UIColor(rgb: 0x211103)
+
     
     let gifFile = "duck"
     
     var body: some View {
         
-        NavigationView {
             
-            ZStack{
-                // Background
-                Color(myBlue).ignoresSafeArea()
+        ZStack{
+            // Background
+            Color(myBlue).ignoresSafeArea()
+            
+            VStack {
+                // Duck Gif
+                GifView(gifName: gifFile, size: CGSize(width: 200, height: 200))
                 
-                VStack {
-                    // Duck Gif
-                    GifView(gifName: gifFile, size: CGSize(width: 200, height: 200))
-                    
-                    Text("Hello!").font(.largeTitle)
-                        .bold()
-                        .foregroundColor(Color.black)
-                    Text("Are you ready to explore the world and \n view your progress?")
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color.black)
-                    
-                    // Log In Here
-                    NavigationLink(destination: LoginView()) {
-                        Text("Log In")
-                            .padding(.vertical, 5)
-                            .frame(width: UIScreen.main.bounds.width-75, alignment: .center)
-                    }.buttonStyle(.borderedProminent)
-                        .tint(Color(logInColor))
-                        .cornerRadius(10)
-                        .padding(5)
+                Text("Hello!").font(.largeTitle)
+                    .bold()
+                    .foregroundColor(Color.black)
+                Text("Are you ready to explore the world and \n view your progress?")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color.black)
+                
+                // Log In Here
+                NavigationLink(destination: LoginView()) {
+                    Text("Log In")
+                        .padding(.vertical, 5)
+                        .frame(width: UIScreen.main.bounds.width-75, alignment: .center)
+                }.buttonStyle(.borderedProminent)
+                    .tint(Color(logInColor))
+                    .cornerRadius(10)
+                    .padding(5)
 
-            
-                    
-                    // Sign Up Here
-                    NavigationLink(destination: SignupView()) {
-                        Text("Sign Up")
-                            .foregroundColor(Color.black)
-                            .padding(.vertical, 5)
-                            .frame(width: UIScreen.main.bounds.width-75, alignment: .center)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color.white, lineWidth: 2))
-                    }.buttonStyle(.borderedProminent)
-                        .tint(.white)
-                        .cornerRadius(10)
- 
-                    
-                }.padding(.bottom, 20.0) // VStack
-            } // ZStack
-        }.accentColor(Color(backColor)) // Nav View
+        
+                
+                // Sign Up Here
+                NavigationLink(destination: SignupView()) {
+                    Text("Sign Up")
+                        .foregroundColor(Color.black)
+                        .padding(.vertical, 5)
+                        .frame(width: UIScreen.main.bounds.width-75, alignment: .center)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.white, lineWidth: 2))
+                }.buttonStyle(.borderedProminent)
+                    .tint(.white)
+                    .cornerRadius(10)
+
+                
+            }.padding(.bottom, 20.0) // VStack
+        } // ZStack
+// Nav View
     }
     // For Log in
     func logIn() {

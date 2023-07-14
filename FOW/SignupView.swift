@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-import GoogleSignIn
-import GoogleSignInSwift
+import Firebase
+//import GoogleSignIn
+//import GoogleSignInSwift
 
 struct SignupView: View {
     
@@ -24,6 +25,12 @@ struct SignupView: View {
             .compactMap({$0 as? UIWindowScene})
             .first?.windows
             .filter({$0.isKeyWindow}).first
+    
+    // show popup
+    @State var showingPopup = false
+    @State var showUsedEmail = false
+    @State var notCorrectEmail = false
+
     
     // Proper name, email, password
     @State private var uname: String = ""
@@ -47,7 +54,7 @@ struct SignupView: View {
                         VStack(alignment: .leading) {
                             
                             // Welcome sign
-                            Text("Hello, let's get exploring!")
+                            Text("Hello! ☁️☀️☁️\nLet's get exploring!")
                                 .font(.largeTitle)
                                 .bold()
                                 .foregroundColor(.white)
@@ -70,6 +77,23 @@ struct SignupView: View {
                                 .padding(.horizontal, 20)
                                 .cornerRadius(16)
                                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                                .popover(isPresented: $showUsedEmail,
+                                         attachmentAnchor: .point(.center),
+                                                         arrowEdge: .top) {
+                                    Text("Email is already in use...")
+                                        .font(.headline)
+                                        .padding()
+                                        .presentationCompactAdaptation(.none)
+                                }
+                                 .popover(isPresented: $notCorrectEmail,
+                                          attachmentAnchor: .point(.center),
+                                                          arrowEdge: .top) {
+                                     Text("Email is invalid.")
+                                         .font(.headline)
+                                         .padding()
+                                         .presentationCompactAdaptation(.none)
+                                 }
+                            
                             
                             
                             SecureField("Password", text: $password)
@@ -86,10 +110,19 @@ struct SignupView: View {
                                 .padding(.horizontal, 20)
                                 .cornerRadius(16)
                                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                            
+                                .popover(isPresented: $showingPopup,
+                                         attachmentAnchor: .point(.center),
+                                                         arrowEdge: .top) {
+                                    Text("Password does not match, try again.")
+                                        .font(.headline)
+                                        .padding()
+                                        .presentationCompactAdaptation(.none)
+                                } // https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-popover-view
+                            //if password doesnt match just return whew.
+
                             
                             Section {
-                                Button(action: something) {
+                                Button(action: signUpCheck) {
                                     Text("Sign up")
                                         .padding(.vertical, 5)
                                         .padding(.horizontal, 20)
@@ -99,6 +132,7 @@ struct SignupView: View {
                                     .cornerRadius(16)
                                     .accentColor(.black)
                                     .padding(.vertical, 40)
+
                             }.disabled(uname.isEmpty || email.isEmpty || password.isEmpty || passwordRe.isEmpty)
                             
                         } // VStack with Text, TextField, and Sign up Button
@@ -106,10 +140,11 @@ struct SignupView: View {
                         // ---- or ----
                         LabelledDivider(label: "or")
                         
-                        Text("Sign up with your social media account")
+                        // Just start with email and password sign in
+                        /*Text("Sign up with your social media account")
                             .font(.footnote)
                             .foregroundColor(color)
-                        GoogleSignInButton(action: handleSignInButton)
+                        GoogleSignInButton(action: handleSignInButton)*/
                         
                         // Already have account?
                         HStack{
@@ -136,28 +171,38 @@ struct SignupView: View {
         } // ZStack
 
     } // body
-
-    func handleSignInButton() {
-        guard let rootViewController = keyWindow?.rootViewController else {
-                return
-            }
-            
-            GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { signInResult, error in
-                if let error = error {
-                    // Handle error
-                    print("Sign In Error: \(error.localizedDescription)")
-                    return
+    
+    func signUpCheck(){
+        // Check if password text are the same else show a pop up that theyre incorrect.
+        if password != passwordRe {
+            showingPopup = true
+            return
+        }
+        // https://stackoverflow.com/questions/56806437/firebase-auth-and-swift-check-if-email-already-in-database
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let x = error {
+                let err = x as NSError
+                switch err.code {
+                case AuthErrorCode.invalidEmail.rawValue:
+                    notCorrectEmail = true
+                    print("invalid email")
+                case AuthErrorCode.accountExistsWithDifferentCredential.rawValue:
+                    print("accountExistsWithDifferentCredential")
+                case AuthErrorCode.emailAlreadyInUse.rawValue: //<- Your Error
+                    showUsedEmail = true
+                    print("email is already in use")
+                default:
+                    print("unknown error: \(err.localizedDescription)")
                 }
+                //return
+            } else {
+                print("SIGN UP SUCCESS")//continue to app
                 
-                // Sign in succeeded
-                if let result = signInResult {
-                    print("Sign In Success: \(result)")
-                    // Display the app's main content View
-                }
             }
         }
-    func something(){
-        print("hi")
+        // After create user go to main map view
+        // TODO Need to figure out this step
+        
     }
     
 }

@@ -33,6 +33,7 @@ struct LoginView: View {
                         VStack(alignment: .leading) {
                             
                             // Welcome sign
+                            
                             Text("Welcome Back! 👋🏻")
                                 .font(.largeTitle)
                                 .bold()
@@ -47,6 +48,8 @@ struct LoginView: View {
                                 .padding(.horizontal, 20)
                                 .cornerRadius(16)
                                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                                .disableAutocorrection(true)
+
                             
                             SecureField("Password", text: $password)
                                 .foregroundColor(.white)
@@ -54,6 +57,8 @@ struct LoginView: View {
                                 .padding(.horizontal, 20)
                                 .cornerRadius(16)
                                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                                .disableAutocorrection(true)
+
                             
                             Section {
                                 Button(action: something) {
@@ -100,14 +105,13 @@ struct LoginView: View {
                                     .foregroundColor(Color(forgotBC))
                             }
                         }.padding(.top, 80)
-                        
-                        
+                    
                     } // outer VStack
                     Spacer()
                 } // HStack
                 Spacer()
-            }.ignoresSafeArea(.keyboard, edges: .bottom) // Final VStack
-        } // ZStack
+            } // Final VStack
+        }.ignoresSafeArea(.keyboard, edges: .bottom) // ZStack
 
     }
     func something(){
