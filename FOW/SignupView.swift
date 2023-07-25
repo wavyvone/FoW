@@ -32,6 +32,9 @@ struct SignupView: View {
     @State var showingPopup = false
     @State var showUsedEmail = false
     @State var notCorrectEmail = false
+    @State var weakPass = false
+    
+    @State var completedSignUp = false
 
     
     // Proper name, email, password
@@ -40,140 +43,155 @@ struct SignupView: View {
     @State private var password: String = ""
     @State private var passwordRe: String = ""
     
+    @ObservedObject var locationManager = LocationManager.shared
     
     var body: some View {
-            
-        ZStack{
-            // Add color background
-            Color(lilac).ignoresSafeArea()
-            
-            VStack{
-                Spacer()
-                HStack {
-                    Spacer()
-                    
-                    VStack{
-                        VStack(alignment: .leading) {
-                            
-                            // Welcome sign
-                            Text("Hello! ☁️☀️☁️\nLet's get exploring!")
-                                .font(.largeTitle)
-                                .bold()
-                                .foregroundColor(.white)
-                            Text("Create a new account!")
-                                .foregroundColor(.white)
-                                .padding(.bottom, 20)
-                            
-                            
-                            TextField("Name", text: $uname)
-                                .foregroundColor(.white)
-                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                .padding(.horizontal, 20)
-                                .cornerRadius(16)
-                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                            
-                            
-                            TextField("Email", text: $email)
-                                .foregroundColor(.white)
-                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                .padding(.horizontal, 20)
-                                .cornerRadius(16)
-                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                .popover(isPresented: $showUsedEmail,
-                                         attachmentAnchor: .point(.center),
-                                                         arrowEdge: .top) {
-                                    Text("Email is already in use...")
-                                        .font(.headline)
-                                        .padding()
-                                        .presentationCompactAdaptation(.none)
-                                }
-                                 .popover(isPresented: $notCorrectEmail,
-                                          attachmentAnchor: .point(.center),
-                                                          arrowEdge: .top) {
-                                     Text("Email is invalid.")
-                                         .font(.headline)
-                                         .padding()
-                                         .presentationCompactAdaptation(.none)
-                                 }
-                            
-                            
-                            
-                            SecureField("Password", text: $password)
-                                .foregroundColor(.white)
-                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                .padding(.horizontal, 20)
-                                .cornerRadius(16)
-                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                            
-                            
-                            SecureField("Enter password again", text: $passwordRe)
-                                .foregroundColor(.white)
-                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                .padding(.horizontal, 20)
-                                .cornerRadius(16)
-                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                .popover(isPresented: $showingPopup,
-                                         attachmentAnchor: .point(.center),
-                                                         arrowEdge: .top) {
-                                    Text("Password does not match, try again.")
-                                        .font(.headline)
-                                        .padding()
-                                        .presentationCompactAdaptation(.none)
-                                } // https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-popover-view
-                            //if password doesnt match just return whew.
-
-                            
-                            Section {
-                                Button(action: signUpCheck) {
-                                    Text("Sign up")
-                                        .padding(.vertical, 5)
-                                        .padding(.horizontal, 20)
-                                        .frame(width: UIScreen.main.bounds.width-80)
-                                }.buttonStyle(.borderedProminent)
-                                    .tint(Color(signUpBC))
-                                    .cornerRadius(16)
-                                    .accentColor(.black)
-                                    .padding(.vertical, 40)
-
-                            }.disabled(uname.isEmpty || email.isEmpty || password.isEmpty || passwordRe.isEmpty)
-                            
-                        } // VStack with Text, TextField, and Sign up Button
-                        
-                        // ---- or ----
-                        LabelledDivider(label: "or")
-                        
-                        // Just start with email and password sign in
-                        /*Text("Sign up with your social media account")
-                            .font(.footnote)
-                            .foregroundColor(color)
-                        GoogleSignInButton(action: handleSignInButton)*/
-                        
-                        // Already have account?
-                        HStack{
-                            Text("Already have an account?")
-                                .font(.footnote)
-                                .foregroundColor(color)
-                            
-                            // Sign Up Here
-                            NavigationLink(destination: LoginView()) {
-                                Text("Log in")
-                                    .font(.footnote)
-                                    .bold()
-                                    .foregroundColor(Color(lightBlue))
-                            }
-                        }.padding(.top, 80)
-                    } // Outer Vstack
-                    
-                    Spacer()
-                } // HStack of Spacer
-                Spacer()
-            }.ignoresSafeArea(.keyboard, edges: .bottom) // Vstack of Spacern
-            // Add alignment guide
-                            
-        } // ZStack
-
-    } // body
     
+        // if user successfully signs in and userlocation is not given
+        // user didnt give us their location
+        if completedSignUp && locationManager.userLocation == nil {
+            LocationQueryView()
+        } else {
+            ZStack{
+                // Add color background
+                Color(lilac).ignoresSafeArea()
+                
+                VStack{
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        
+                        VStack{
+                            VStack(alignment: .leading) {
+                                
+                                // Welcome sign
+                                Text("Hello! ☁️☀️☁️\nLet's get exploring!")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                Text("Create a new account!")
+                                    .foregroundColor(.white)
+                                    .padding(.bottom, 20)
+                                
+                                
+                                TextField("Name", text: $uname)
+                                    .foregroundColor(.white)
+                                    .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                    .padding(.horizontal, 20)
+                                    .cornerRadius(16)
+                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                                
+                                
+                                TextField("Email", text: $email)
+                                    .foregroundColor(.white)
+                                    .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                    .padding(.horizontal, 20)
+                                    .cornerRadius(16)
+                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                                    .popover(isPresented: $showUsedEmail,
+                                             attachmentAnchor: .point(.center),
+                                             arrowEdge: .top) {
+                                        Text("Email is already in use...")
+                                            .font(.headline)
+                                            .padding()
+                                            .presentationCompactAdaptation(.none)
+                                    }
+                                             .popover(isPresented: $notCorrectEmail,
+                                                      attachmentAnchor: .point(.center),
+                                                      arrowEdge: .top) {
+                                                 Text("Email is invalid.")
+                                                     .font(.headline)
+                                                     .padding()
+                                                     .presentationCompactAdaptation(.none)
+                                             }
+                                
+                                
+                                
+                                SecureField("Password", text: $password)
+                                    .foregroundColor(.white)
+                                    .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                    .padding(.horizontal, 20)
+                                    .cornerRadius(16)
+                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                                    .popover(isPresented: $weakPass,
+                                             attachmentAnchor: .point(.center),
+                                             arrowEdge: .top) {
+                                        Text("Password is less than 6 characters.")
+                                            .font(.headline)
+                                            .padding()
+                                            .presentationCompactAdaptation(.none)
+                                    }
+                                        
+                                        
+                                    SecureField("Enter password again", text: $passwordRe)
+                                        .foregroundColor(.white)
+                                        .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                                        .padding(.horizontal, 20)
+                                        .cornerRadius(16)
+                                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
+                                        .popover(isPresented: $showingPopup,
+                                                 attachmentAnchor: .point(.center),
+                                                 arrowEdge: .top) {
+                                            Text("Password does not match, try again.")
+                                                .font(.headline)
+                                                .padding()
+                                                .presentationCompactAdaptation(.none)
+                                        } // https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-popover-view
+                                    //if password doesnt match just return whew.
+                                        
+                                        
+                                    Section {
+                                        Button(action: signUpCheck) {
+                                            Text("Sign up")
+                                                .padding(.vertical, 5)
+                                                .padding(.horizontal, 20)
+                                                .frame(width: UIScreen.main.bounds.width-80)
+                                        }.buttonStyle(.borderedProminent)
+                                            .tint(Color(signUpBC))
+                                            .cornerRadius(16)
+                                            .accentColor(.black)
+                                            .padding(.vertical, 40)
+                                        
+                                    }.disabled(uname.isEmpty || email.isEmpty || password.isEmpty || passwordRe.isEmpty)
+                                        
+                                } // VStack with Text, TextField, and Sign up Button
+                                
+                                // ---- or ----
+                                LabelledDivider(label: "or")
+                                
+                                // Just start with email and password sign in
+                                /*Text("Sign up with your social media account")
+                                 .font(.footnote)
+                                 .foregroundColor(color)
+                                 GoogleSignInButton(action: handleSignInButton)*/
+                                
+                                // Already have account?
+                                HStack{
+                                    Text("Already have an account?")
+                                        .font(.footnote)
+                                        .foregroundColor(color)
+                                    
+                                    // Sign Up Here
+                                    NavigationLink(destination: LoginView()) {
+                                        Text("Log in")
+                                            .font(.footnote)
+                                            .bold()
+                                            .foregroundColor(Color(lightBlue))
+                                    }
+                                }.padding(.top, 80)
+                            } // Outer Vstack
+                            
+                            Spacer()
+                        } // HStack of Spacer
+                        Spacer()
+                    }.ignoresSafeArea(.keyboard, edges: .bottom) // Vstack of Spacern
+                    // Add alignment guide
+                } // ZStack
+        } // else
+        
+            
+    } // body
+        
     func signUpCheck(){
         // Check if password text are the same else show a pop up that theyre incorrect.
         if password != passwordRe {
@@ -193,13 +211,17 @@ struct SignupView: View {
                 case AuthErrorCode.emailAlreadyInUse.rawValue: //<- Your Error
                     showUsedEmail = true
                     print("email is already in use")
+                case AuthErrorCode.weakPassword.rawValue:
+                    weakPass = true
+                    print("password weak")
                 default:
                     print("unknown error: \(err.localizedDescription)")
                 }
                 //return
             } else {
                 createUserDocument()
-                print("SIGN UP SUCCESS")//continue to app
+                completedSignUp = true
+                print("SIGN UP SUCCESS") //continue to app
                 
             }
         }
@@ -212,7 +234,7 @@ struct SignupView: View {
         // https://codewithchris.com/swift-string/
         let atSign = email.firstIndex(of: "@")!
         let documentId = email[..<atSign]
-    
+        
         //let subcollection: String = "fog_of_war"
         
         guard !documentId.isEmpty else {
@@ -233,17 +255,16 @@ struct SignupView: View {
         }
         // Subcollections must be created after user logs in
         /*if createdDocument {
-            db.collection("users").document(String(documentId)).collection(subcollection).document() { error in
-                if let error = error {
-                    print("Error creating user document: \(error.localizedDescription)")
-                } else {
-                    print("User collection created.")
-                }
-            }
-        } //create Document*/
+         db.collection("users").document(String(documentId)).collection(subcollection).document() { error in
+         if let error = error {
+         print("Error creating user document: \(error.localizedDescription)")
+         } else {
+         print("User collection created.")
+         }
+         }
+         } //create Document*/
             
     } //Created user Document func
-    
 }
 
 
