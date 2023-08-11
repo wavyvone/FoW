@@ -13,6 +13,7 @@ import FirebaseCore
 //import FirebaseFirestore
 import FirebaseAuth
 
+
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -26,12 +27,15 @@ struct FOWApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    @StateObject var authManager = AuthManager()
+    
     let backColor = UIColor(rgb: 0x211103)
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
+                    .environmentObject(self.authManager)
                 /*.onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }

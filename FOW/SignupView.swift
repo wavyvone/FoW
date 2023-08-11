@@ -42,8 +42,12 @@ struct SignupView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var passwordRe: String = ""
+    @State private var uid: String = ""
     
     @ObservedObject var locationManager = LocationManager.shared
+    
+    // Sign in stay signed in
+    @AppStorage("uid") var userID: String = ""
     
     var body: some View {
     
@@ -51,6 +55,8 @@ struct SignupView: View {
         // user didnt give us their location
         if completedSignUp && locationManager.userLocation == nil {
             LocationQueryView()
+        } else if completedSignUp && locationManager.userLocation != nil {
+            MainMapView()
         } else {
             ZStack{
                 // Add color background
@@ -200,6 +206,9 @@ struct SignupView: View {
         }
         // https://stackoverflow.com/questions/56806437/firebase-auth-and-swift-check-if-email-already-in-database
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let authResult = authResult {
+                uid = authResult.user.uid
+            }
             if let x = error {
                 let err = x as NSError
                 switch err.code {
@@ -221,6 +230,7 @@ struct SignupView: View {
             } else {
                 createUserDocument()
                 completedSignUp = true
+                userID = uid
                 print("SIGN UP SUCCESS") //continue to app
                 
             }
@@ -234,7 +244,6 @@ struct SignupView: View {
         // https://codewithchris.com/swift-string/
         let atSign = email.firstIndex(of: "@")!
         let documentId = email[..<atSign]
-        
         //let subcollection: String = "fog_of_war"
         
         guard !documentId.isEmpty else {
@@ -244,7 +253,8 @@ struct SignupView: View {
         
         let db = Firestore.firestore()
         db.collection("users").document(String(documentId)).setData([
-            "name": uname
+            "name": uname,
+            "uid": uid
             // Here I want to create a name field with their name
         ]) { error in
             if let error = error {

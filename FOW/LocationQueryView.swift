@@ -9,6 +9,10 @@ import SwiftUI
 
 struct LocationQueryView: View {
     // Location Services!
+    @Environment(\.presentationMode) var presentation
+    
+    // AuthManager check if user is logged in or not.
+    @EnvironmentObject var authManager: AuthManager
     
     // Colors
     let peach = UIColor(rgb: 0xF9B5AC)
@@ -37,24 +41,29 @@ struct LocationQueryView: View {
                         } // inner VStack
                         
                         // Want the user to press the button and update their acc on firebase to make the location service on.
-                        Button(action:agreeLocation){
+                        // prettier button HAHA you have the function done in there
+                        Button {
+                            LocationManager.shared.requestLoaction()
+                        } label: {
                             Text("Allow location")
+                                .padding()
                                 .font(.headline)
-                                .padding(.vertical, 5)
-                                .padding(.horizontal, 20)
-                                .frame(width: UIScreen.main.bounds.width-80)
                                 .foregroundColor(.black)
-                        }.buttonStyle(.borderedProminent)
-                            .cornerRadius(16)
-                            .accentColor(Color(lavender))
-                            .padding(.top, 40)
-                            .padding(.bottom, 20)
+                        }
+                        .frame(width: UIScreen.main.bounds.width)
+                        .padding(.horizontal, -32)
+                        .background(Color(lavender))
+                        .clipShape(Capsule())
+                        .padding()
                         
                         //Button change to the capsules
                         
-                        NavigationLink(destination: ContentView()) {
+                        Button{
+                            logout()
+                        } label: {
                             Text("Maybe later")
                                 .font(.headline)
+                                .foregroundColor(.black)
                         }
                         // Honestly Users can just back out and delete the app.
                         
@@ -69,13 +78,14 @@ struct LocationQueryView: View {
         } // Outer ZStack
         
         // https://stackoverflow.com/questions/64558834/how-to-call-swiftui-navigationlink-conditionally
-        NavigationLink(destination: MainMapView()){
+        //NavigationLink(destination: MainMapView()){
             
-        }
+        //}
             
     } // body
-    func agreeLocation() {
-        
+    func logout() {
+        authManager.logout()
+        self.presentation.wrappedValue.dismiss()
     }
 }
 
