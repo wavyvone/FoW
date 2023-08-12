@@ -58,7 +58,7 @@ struct ContentView: View {
                     
                     
                     // Sign Up Here
-                    NavigationLink(destination: SignupView()) {
+                    NavigationLink(destination: ContentToSignupView().environmentObject(authManager)) {
                         Text("Sign Up")
                             .foregroundColor(Color.black)
                             .padding(.vertical, 5)

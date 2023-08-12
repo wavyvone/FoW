@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  FOW
+
+  Created by Yvonne Chen on 8/11/23.
+  
+*/
+"invalid_email_error" = "Invalid email address.";
+"account_exists_error" = "An account with different credentials already exists.";
+"email_in_use_error" = "Email is already in use.";
+"weak_password_error" = "Password is too weak.";

@@ -1,44 +1,43 @@
 //
-//  ContentToLoginView.swift
+//  ContentToSignupView.swift
 //  FOW
 //
 //  Created by Yvonne Chen on 8/10/23.
 //
 
 import SwiftUI
+import Firebase
 
-struct ContentToLoginView: View {
+struct ContentToSignupView: View {
     
     // Double check if the user has location shared or not
     @ObservedObject var locationManager = LocationManager.shared
     
-    // AuthManager check if user is logged in or not.
+    // Insert Authmanager environment object
     @EnvironmentObject var authManager: AuthManager
     
+    
     var body: some View {
-        if authManager.isLoggedIn{
-            // if user is already logged in, check location permission
+        // if user successfully signs in and userlocation is not given
+        // user didnt give us their location
+        if authManager.isLoggedIn {
             if locationManager.userLocation == nil {
                 LocationQueryView()
             } else {
-                // logged in and location is given
+                // go to map once signup all works
                 ViewToMainMapView()
                     .navigationBarBackButtonHidden(true)
                     .environmentObject(authManager)
-                // make sure the user can't accidently back out unless using the
-                // logout button
             }
         } else {
-            // go to login view
-            LoginView().environmentObject(authManager)
+            // Go to Sign up
+            SignupView().environmentObject(authManager)
         }
-    } // body
-    
-    
+    }
 }
 
-struct ContentToLoginView_Previews: PreviewProvider {
+struct ContentToSignupView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentToLoginView()
+        ContentToSignupView()
     }
 }
