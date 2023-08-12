@@ -16,6 +16,7 @@ struct ViewToMainMapView: View {
     @EnvironmentObject var authManager: AuthManager
     
     var body: some View {
+        // Check if user give location permissions.
         if locationManager.userLocation == nil {
             LocationQueryView().environmentObject(authManager)
         } else {

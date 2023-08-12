@@ -23,11 +23,12 @@ struct MainMapView: View {
     // at this point the location should be updated lmao and given
     
     var body: some View {
-        /*if locationManager.userLocation == nil {
-            LocationQueryView()
-        } else if let currLocation = locationManager.userLocation {*/
         if let currLocation = locationManager.userLocation {
             ZStack{
+                // Need to add Map Here
+                
+                
+                
                 Color(azurBlue).ignoresSafeArea()
                 VStack {
                     Spacer()

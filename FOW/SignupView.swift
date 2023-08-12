@@ -31,7 +31,6 @@ struct SignupView: View {
     @State var emailAlreadyInUse = false
     @State var invalidEmail = false
     @State var weakPass = false
-    
     @State private var errorFlag = false
 
     
@@ -48,18 +47,9 @@ struct SignupView: View {
     @EnvironmentObject var authManager: AuthManager
     @State private var signupResult: SignupError?
     
-    // Sign in stay signed in
-    //@AppStorage("uid") var userID: String = ""
     
     var body: some View {
-    
-        /*// if user successfully signs in and userlocation is not given
-        // user didnt give us their location
-        if completedSignUp && locationManager.userLocation == nil {
-            LocationQueryView()
-        } else if completedSignUp && locationManager.userLocation != nil {
-            MainMapView()
-        } else {*/
+
         ZStack{
             // Add color background
             Color(lilac).ignoresSafeArea()
@@ -236,8 +226,7 @@ struct SignupView: View {
                 }
             }
         }
-    
-    } // signuP end
+    }
     
 }
 

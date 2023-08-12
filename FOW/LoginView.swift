@@ -9,6 +9,8 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
+    
+    // Colors
     let skyBlue = UIColor(rgb: 0x87B2CC)
     let logInBC = UIColor(rgb: 0x617073)
     let forgotBC = UIColor(rgb: 0x071C34)
@@ -18,19 +20,19 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
-    // Insert Authmanager environment object
+    // Insert Authmanager environment object.
     @EnvironmentObject var authManager: AuthManager
     
-    // Double check if the user has location shared or not
+    // Double check if the user has location shared or not.
     @ObservedObject var locationManager = LocationManager.shared
     
-    //Login have to stay logged in now
+    //Login have to stay logged in now.
     @AppStorage("uid") var userID: String = ""
     
     var body: some View {
         
         ZStack{
-            // Add color background
+            // Add color background.
             Color(skyBlue).ignoresSafeArea()
             VStack{
                 Spacer()
@@ -41,7 +43,6 @@ struct LoginView: View {
                         VStack(alignment: .leading) {
                             
                             // Welcome sign
-                            
                             Text("Welcome Back! 👋🏻")
                                 .font(.largeTitle)
                                 .bold()
@@ -50,6 +51,7 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                                 .padding(.bottom, 40)
                             
+                            // Email Field
                             TextField("Email", text: $email)
                                 .foregroundColor(.white)
                                 .frame(width: UIScreen.main.bounds.width-100, height: 40)
@@ -58,7 +60,7 @@ struct LoginView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
                                 .disableAutocorrection(true)
                             
-                            
+                            // Password Field
                             SecureField("Password", text: $password)
                                 .foregroundColor(.white)
                                 .frame(width: UIScreen.main.bounds.width-100, height: 40)
@@ -67,7 +69,7 @@ struct LoginView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
                                 .disableAutocorrection(true)
                             
-                            
+                            // Login Button
                             Section {
                                 Button(action: verifyLogin) {
                                     Text("Log in")
@@ -83,7 +85,8 @@ struct LoginView: View {
                             
                         } // main Vstack
                         
-                        Button(action: something){
+                        // Reset Password Button
+                        Button(action: forgetPassword){
                             Text("Forgot Password?")
                                 .font(.footnote)
                                 .foregroundColor(Color(forgotBC))
@@ -99,7 +102,7 @@ struct LoginView: View {
                         // TODO add social media here
                         
                         
-                        // Don't have account?
+                        // Don't have account? Go to Sign Up.
                         HStack{
                             Text("Don't have an account?")
                                 .font(.footnote)
@@ -120,23 +123,26 @@ struct LoginView: View {
                 Spacer()
             } // Final VStack
         }.ignoresSafeArea(.keyboard, edges: .bottom) // ZStack
-        //}
+
     }
     
-    // https://designcode.io/swiftui-advanced-handbook-firebase-auth
+    /**
+     Verify if the login success or not. AuthManager will determine if user can access the map.
+     */
     func verifyLogin() {
+        // https://designcode.io/swiftui-advanced-handbook-firebase-auth
         authManager.login(email: email, password: password) { success in
             if success {
                 print("Success Login")
-                // Navigate to another view, for example, after successful login
+                // Navigate to another view, for example, after successful login.
             } else {
                 print("Fail Login")
-                // Display an error message or handle unsuccessful login
+                // Display an error message or handle unsuccessful login.
             }
         }
     }
     
-    func something(){
+    func forgetPassword(){
         print("Forget password not completed")
     }
 }

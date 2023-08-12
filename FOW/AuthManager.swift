@@ -9,26 +9,31 @@ import Firebase
 import FirebaseFirestore
 import SwiftUI
 
-/*
- Authorization Manager:
- Keeps track of login status locally in the app.
- Arguments: None
- Functions:
-    checkLoggedIn()
-    signup(email, password, uname)
-    createUserDocument(email, uname, uid)
-    login(email, password)
-    logout()
- */
+
 class AuthManager: ObservableObject {
     @Published var isLoggedIn = false
     
+    /**
+     Authorization Manager. Keeps track of login status locally in the app.
+
+     - Parameters: None
+
+     - Returns: None
+     
+     # Notes: #
+      1. use isLoggedIn to view user login status.
+     */
     init() {
         checkLoggedIn()
     }
     
-    /*
-     Checks the app status to see if user is logged in or not.
+    /**
+     Check the app status to see if user is logged in or not.
+     Calling this method determines if `isLoggedIn` will be set to true or false.
+
+     - Parameters: None
+     
+     - Returns: None
      */
     func checkLoggedIn() {
         if Auth.auth().currentUser != nil {
@@ -36,12 +41,25 @@ class AuthManager: ObservableObject {
         }
     }
     
-    /*
+    /**
+     User sign up with their credentials. Upon success will create a document on firebase. A uid will be created per user.
+     `isLoggedIn` will also be set to true. Upon failure, user will receive feedback.
      
+     # Users receive feedback:
+     1. Invalid email
+     2. Weak password
+     3. Existing email
+     
+     - Parameters:
+        - email: The user's email
+        - password: The user's password
+        - uname: The user's name
+
+     - Returns: None
      */
-    // https://stackoverflow.com/questions/56806437/firebase-auth-and-swift-check-if-email-already-in-database
     func signup(email: String, password: String, uname: String, completion: @escaping (Result<AuthDataResult, SignupError>) -> Void) {
         var uid: String = ""
+        // https://stackoverflow.com/questions/56806437/firebase-auth-and-swift-check-if-email-already-in-database
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let authResult = authResult {
                 // Signup successful, you can extract user information if needed
@@ -49,6 +67,7 @@ class AuthManager: ObservableObject {
                 self.createUserDocument(email: email, uname: uname, uid: uid)
                 self.isLoggedIn = true
                 completion(.success(authResult))
+            // Upon failure, users will recieve an error
             } else if let error = error as NSError? {
                 let signupError = SignupError(errorCode: error.code)
                 completion(.failure(signupError))
@@ -56,9 +75,18 @@ class AuthManager: ObservableObject {
         }
     }
     
-    // helper function to create user document
-    //https://stackoverflow.com/questions/46590155/firestore-permission-denied-missing-or-insufficient-permissions
+    /**
+     Helper method for signup function to organize new user document on Firebase
+     
+     - Parameters:
+        - email: The user's email
+        - uname: The user's name
+        - uid: The user's newly created uid
+
+     - Returns: None
+     */
     func createUserDocument(email: String, uname: String, uid: String) {
+        //https://stackoverflow.com/questions/46590155/firestore-permission-denied-missing-or-insufficient-permissions
         // https://codewithchris.com/swift-string/
         let atSign = email.firstIndex(of: "@")!
         let documentId = email[..<atSign]
@@ -81,10 +109,18 @@ class AuthManager: ObservableObject {
                 print("User document created with the custom ID.")
             }
         }
-            
-    } //Created user Document func
+    }
 
     
+    /**
+     User login function. Will update `isLoggedIn` to true on successful login
+     
+     - Parameters:
+        - email: The user's email
+        - password: The user's password
+
+     - Returns: None
+     */
     func login(email: String, password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if let error = error {
@@ -97,7 +133,13 @@ class AuthManager: ObservableObject {
         }
     }
     
-    // have app set to signout
+    /**
+     User logout function. Will update `isLoggedIn` to false after logout.
+     
+     - Parameters: None
+
+     - Returns: None
+     */
     func logout() {
         do {
             try Auth.auth().signOut()
@@ -106,11 +148,12 @@ class AuthManager: ObservableObject {
             print("Error signing out: \(error.localizedDescription)")
         }
     }
-
 }
     
     
-
+/*
+ Enum for Signup Error cases
+ */
 enum SignupError: Error {
     case invalidEmail
     case accountExistsWithDifferentCredential

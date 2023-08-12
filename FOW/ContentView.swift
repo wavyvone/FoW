@@ -13,22 +13,21 @@ import Firebase
 struct ContentView: View {
     let myBlue = UIColor(rgb: 0xABDAE1)
     let logInColor = UIColor(rgb: 0xB3B3B3)
-    
-    // Login and say Logged in https://www.youtube.com/watch?v=OTg_yZp3T34
-    @AppStorage("uid") var userID: String = ""
 
+    // AuthManager check if user is logged in or not.
     @EnvironmentObject var authManager: AuthManager
     
+    // GIF file name
     let gifFile = "duck"
     
     var body: some View {
-        // user is logged in
-        // Auth.auth().currentUser != nil
+        
+        // Check if user is logged in or not.
         if authManager.isLoggedIn {
             ViewToMainMapView().environmentObject(authManager)
         } else {
             ZStack{
-                // Background
+                // Background Color
                 Color(myBlue).ignoresSafeArea()
                 
                 VStack {
@@ -74,19 +73,7 @@ struct ContentView: View {
                 }.padding(.bottom, 20.0) // VStack
             } // ZStack
         } // else
-// Nav View
-    }
-    // For Log in
-    func logIn() {
-        // Should move to Log In Page
-        print("Log In")
-    }
-    // For Sign up
-    func signUp() {
-        // Should move to Sign Up Page
-        print("Sign Up")
-    }
-
+    } // Nav View
 }
 
 // Run Gif with this

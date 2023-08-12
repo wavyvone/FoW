@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentToLoginView: View {
     
-    // Double check if the user has location shared or not
+    // Double check if the user has location shared or not.
     @ObservedObject var locationManager = LocationManager.shared
     
     // AuthManager check if user is logged in or not.
@@ -17,19 +17,19 @@ struct ContentToLoginView: View {
     
     var body: some View {
         if authManager.isLoggedIn{
-            // if user is already logged in, check location permission
+            // If user is already logged in, check location permission.
             if locationManager.userLocation == nil {
                 LocationQueryView()
             } else {
-                // logged in and location is given
+                // Logged in and location is given.
                 ViewToMainMapView()
                     .navigationBarBackButtonHidden(true)
                     .environmentObject(authManager)
-                // make sure the user can't accidently back out unless using the
-                // logout button
+                // Make sure the user can't accidently back out unless using the
+                // logout button.
             }
         } else {
-            // go to login view
+            // Go to login view.
             LoginView().environmentObject(authManager)
         }
     } // body
