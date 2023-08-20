@@ -20,24 +20,30 @@ struct MainMapView: View {
     // Color : 89DAFF
     let azurBlue = UIColor(rgb: 0x89DAFF)
     
+    var long = 0
+    var lat = 0
+    
     // at this point the location should be updated lmao and given
     
     var body: some View {
         if let currLocation = locationManager.userLocation {
             ZStack{
                 // Need to add Map Here
-                
-                
-                
+
                 Color(azurBlue).ignoresSafeArea()
+                
+                MapViewControllerBridge(latitude: currLocation.coordinate.latitude, longitude: currLocation.coordinate.longitude).edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea(.bottom)
+                    
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
                         VStack{
-                            Text("Welcome to your map!")
-                            Text("\(currLocation)")
+                            Text("Welcome to your map!").foregroundColor(.black)
+                            Text("\(currLocation.coordinate.latitude)")
                                 .padding()
+                                .foregroundColor(.black)
                             
                         } // VStack
                         .toolbar {

@@ -24,7 +24,7 @@ struct LoginView: View {
     @EnvironmentObject var authManager: AuthManager
     
     // Double check if the user has location shared or not.
-    @ObservedObject var locationManager = LocationManager.shared
+    //@ObservedObject var locationManager = LocationManager.shared
     
     //Login have to stay logged in now.
     @AppStorage("uid") var userID: String = ""

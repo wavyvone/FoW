@@ -23,6 +23,7 @@ struct ViewToMainMapView: View {
             MainMapView().environmentObject(authManager)
         }
     }
+
 }
 
 struct ViewToMainMapView_Previews: PreviewProvider {
