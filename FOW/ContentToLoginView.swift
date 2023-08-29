@@ -11,7 +11,7 @@ struct ContentToLoginView: View {
     
     // Double check if the user has location shared or not.
     //@ObservedObject var locationManager = LocationManager.shared
-    let locationAuth = LocationAuth()
+    @ObservedObject var locationAuth = LocationAuth.shared
     
     // AuthManager check if user is logged in or not.
     @EnvironmentObject var authManager: AuthManager
@@ -20,7 +20,7 @@ struct ContentToLoginView: View {
         if authManager.isLoggedIn{
             // If user is already logged in, check location permission.
 
-            if locationAuth == nil {
+            if locationAuth.isLocationAuthorized {
                 LocationQueryView()
             } else {
                 // Logged in and location is given.

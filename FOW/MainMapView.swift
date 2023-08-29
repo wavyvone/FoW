@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import MapKit
 import Firebase
 
 struct MainMapView: View {
     @Environment(\.presentationMode) var presentationMode
     
     // get the location of the user
-    @ObservedObject var locationManager = LocationManager.shared
+    @StateObject var locationManager = LocationManager()
     
     // AuthManager check if user is logged in or not.
     @EnvironmentObject var authManager: AuthManager
@@ -20,20 +21,34 @@ struct MainMapView: View {
     // Color : 89DAFF
     let azurBlue = UIColor(rgb: 0x89DAFF)
     
-    var long = 0
-    var lat = 0
+    var region: Binding<MKCoordinateRegion>? {
+        guard let location = locationManager.location else {
+            return MKCoordinateRegion.goldenGateRegion().getBinding()
+        }
+        
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 10, longitudinalMeters: 10)
+
+        print(location.coordinate)
+        
+        return region.getBinding()
+    }
     
     // at this point the location should be updated lmao and given
     
     var body: some View {
-        if let currLocation = locationManager.userLocation {
+        if let currLocation = region {
             ZStack{
                 // Need to add Map Here
 
                 Color(azurBlue).ignoresSafeArea()
                 
-                MapViewControllerBridge(latitude: currLocation.coordinate.latitude, longitude: currLocation.coordinate.longitude).edgesIgnoringSafeArea(.top)
-                    .edgesIgnoringSafeArea(.bottom)
+                Map(coordinateRegion: currLocation, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.follow))
+                    .ignoresSafeArea()
+                /*MapViewControllerBridge(latitude: currLocation.coordinate.latitude, longitude: currLocation.coordinate.longitude).edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea(.bottom)*/
+                
+                let latitude = currLocation.center.latitude.wrappedValue
+                let longitude = currLocation.center.longitude.wrappedValue
                     
                 VStack {
                     Spacer()
@@ -41,10 +56,8 @@ struct MainMapView: View {
                         Spacer()
                         VStack{
                             Text("Welcome to your map!").foregroundColor(.black)
-                            Text("\(currLocation.coordinate.latitude)")
-                                .padding()
-                                .foregroundColor(.black)
-                            
+                            //Text(String(describing: latitude))
+                            Text("\(latitude) \(longitude)")
                         } // VStack
                         .toolbar {
                             Button("Logout") {

@@ -6,82 +6,73 @@
 //
 
 // Courtesy of this youtuber https://www.youtube.com/watch?v=poSmKJ_spts
-import Combine
+import Foundation
+import MapKit
 import CoreLocation
+import SwiftUI
 
 class LocationManager: NSObject, ObservableObject{
     // this "manager" is what we will use to
-    private let manager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     // We dont have the user location yet when we initialize so we have to
     // grab from manager
     // Published bc if user location is not allowed we will request and prompt
     // Want to display map after they accept
-    @Published var userLocation: CLLocation?{
-        willSet { objectWillChange.send() }
-    }
+    @Published var location: CLLocation?
     
-    // shared allows us to access this manager anywhere in the app
-    static let shared = LocationManager()
+    private var hasSetRegion = false
 
     /**
      Location will start updating once the app starts. First checks if user did give permission
      */
     override init() {
         super.init()
-        manager.delegate = self
         // Standard locattion
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        requestLoaction()
-        manager.startUpdatingLocation()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        //locationManager.startUpdatingLocation()
+        locationManager.delegate = self
     }
     
-    /**
-     Only aaccess user location when app is in use.
-     */
-    func requestLoaction(){
-        // only access user location when app is in use.
-        // access location when app is not in use can be taxing on battery
-        manager.requestWhenInUseAuthorization()
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
     }
     
-    var latitude: CLLocationDegrees {
-        return userLocation?.coordinate.latitude ?? 0.0
+    func stopUpdatingLocation() {
+        print("stop test")
+        locationManager.stopUpdatingLocation()
     }
-    
-    var longitude: CLLocationDegrees {
-        return userLocation?.coordinate.longitude ?? 0.0
-    }
-    
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-    // User giving us their permission or not?
-    func locationManager(_ manager: CLLocationManager,
-                         didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined:
-            print("DEBUG: notDetermined")
-        case .restricted:
-            print("DEBUG: restricted")
-        case .denied:
-            print("DEBUG: denied")
-        case .authorizedAlways:
-            print("DEBUG: authorizedAlways")
-        case .authorizedWhenInUse:
-            print("DEBUG: authorizedWhenInUse")
-        case .authorized:
-            print("DEBUG: authorized")
-        @unknown default:
-            break
+    // receive location as it updates
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else {
+            print("Location Update none: ")
+            print(locations)
+            return
+        }
+        DispatchQueue.main.async {
+            self.location = location
         }
     }
-    
     /**
      When we do get user's location and it updates!
      */
-    func locationManager(_ manager: CLLocationManager,
+    /*func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         self.userLocation = location
+    }*/
+}
+
+extension MKCoordinateRegion {
+    
+    static func goldenGateRegion() -> MKCoordinateRegion {
+        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.819527098978355, longitude:  -122.47854602016669), latitudinalMeters: 5, longitudinalMeters: 5)
+    }
+    
+    func getBinding() -> Binding<MKCoordinateRegion>? {
+        return Binding<MKCoordinateRegion>(.constant(self))
     }
 }

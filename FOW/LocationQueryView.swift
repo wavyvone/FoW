@@ -43,7 +43,8 @@ struct LocationQueryView: View {
                         // Want the user to press the button and update their acc on firebase to make the location service on.
                         // prettier button HAHA you have the function done in there
                         Button {
-                            LocationManager.shared.requestLoaction()
+                            debugPrint()
+                            LocationAuth.shared.requestLocation()
                         } label: {
                             Text("Allow location")
                                 .padding()
@@ -83,6 +84,10 @@ struct LocationQueryView: View {
         //}
             
     } // body
+    func debugPrint() {
+        print("Location Request")
+    }
+    
     func logout() {
         authManager.logout()
         self.presentation.wrappedValue.dismiss()

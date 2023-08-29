@@ -10,17 +10,17 @@ import Firebase
 
 struct ViewToMainMapView: View {
     // get the location of the user
-    @ObservedObject var locationManager = LocationManager.shared
+    @ObservedObject var locationAuth = LocationAuth.shared
     
     // AuthManager check if user is logged in or not.
     @EnvironmentObject var authManager: AuthManager
     
     var body: some View {
         // Check if user give location permissions.
-        if locationManager.userLocation == nil {
-            LocationQueryView().environmentObject(authManager)
-        } else {
+        if locationAuth.isLocationAuthorized {
             MainMapView().environmentObject(authManager)
+        } else {
+            LocationQueryView().environmentObject(authManager)
         }
     }
 

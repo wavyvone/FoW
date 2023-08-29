@@ -11,7 +11,8 @@ import Firebase
 struct ContentToSignupView: View {
     
     // Double check if the user has location shared or not
-    @ObservedObject var locationManager = LocationManager.shared
+    //@ObservedObject var locationManager = LocationManager.shared
+    @ObservedObject var locationAuth = LocationAuth.shared
     
     // Insert Authmanager environment object
     @EnvironmentObject var authManager: AuthManager
@@ -21,7 +22,7 @@ struct ContentToSignupView: View {
         // if user successfully signs in and userlocation is not given
         // user didnt give us their location
         if authManager.isLoggedIn {
-            if locationManager.userLocation == nil {
+            if locationAuth.isLocationAuthorized {
                 LocationQueryView()
             } else {
                 // go to map once signup all works

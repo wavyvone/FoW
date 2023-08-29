@@ -60,7 +60,8 @@ struct FOWApp: App {
                         // Check if `user` exists; otherwise, do something with `error`
                     }
                 }*/
-            }.accentColor(Color(backColor))
+            }
+            .accentColor(Color(backColor))
         }
     }
 }

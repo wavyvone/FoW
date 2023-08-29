@@ -23,6 +23,9 @@ struct LoginView: View {
     // Insert Authmanager environment object.
     @EnvironmentObject var authManager: AuthManager
     
+    // Password Incorrect
+    @State var incorrectPassword = false
+    
     // Double check if the user has location shared or not.
     //@ObservedObject var locationManager = LocationManager.shared
     
@@ -33,96 +36,97 @@ struct LoginView: View {
         
         ZStack{
             // Add color background.
-            Color(skyBlue).ignoresSafeArea()
-            VStack{
-                Spacer()
-                HStack {
-                    Spacer()
-                    VStack{
+            Color("skyBlue").ignoresSafeArea()
+            ScrollView {
+                VStack {
+                    Group {
+                        // Welcome sign
+                        Text("Welcome Back! 👋🏻")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(.top, 100)
+                        Text("Login to continue exploring!")
+                            .foregroundColor(.white)
+                            .padding(.bottom, 40)
+                    }
+                    .frame(maxWidth: .infinity,
+                           alignment: .leading)
+                    
+                    Group {
+                        // Email Field
+                        TextField("Email", text: $email)
                         
-                        VStack(alignment: .leading) {
-                            
-                            // Welcome sign
-                            Text("Welcome Back! 👋🏻")
-                                .font(.largeTitle)
-                                .bold()
-                                .foregroundColor(.white)
-                            Text("Login to continue exploring!")
-                                .foregroundColor(.white)
-                                .padding(.bottom, 40)
-                            
-                            // Email Field
-                            TextField("Email", text: $email)
-                                .foregroundColor(.white)
-                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
+                        // Password Field
+                        SecureField("Password", text: $password)
+                    }
+                    .textInput()
+                    
+                    // Login Button
+                    Group {
+                        Button(action: verifyLogin) {
+                            Text("Log in")
+                                .padding(.vertical, 5)
                                 .padding(.horizontal, 20)
-                                .cornerRadius(16)
-                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                .disableAutocorrection(true)
-                            
-                            // Password Field
-                            SecureField("Password", text: $password)
-                                .foregroundColor(.white)
-                                .frame(width: UIScreen.main.bounds.width-100, height: 40)
-                                .padding(.horizontal, 20)
-                                .cornerRadius(16)
-                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white))
-                                .disableAutocorrection(true)
-                            
-                            // Login Button
-                            Section {
-                                Button(action: verifyLogin) {
-                                    Text("Log in")
-                                        .padding(.vertical, 5)
-                                        .padding(.horizontal, 20)
-                                        .frame(width: UIScreen.main.bounds.width-80)
-                                }.buttonStyle(.borderedProminent)
-                                    .tint(Color(logInBC))
-                                    .cornerRadius(16)
-                                    .accentColor(.black)
-                                    .padding(.top, 40)
-                            }.disabled(email.isEmpty || password.isEmpty)
-                            
-                        } // main Vstack
-                        
-                        // Reset Password Button
-                        Button(action: forgetPassword){
-                            Text("Forgot Password?")
-                                .font(.footnote)
-                                .foregroundColor(Color(forgotBC))
-                        }.padding(.bottom, 40)
-                        
-                        // ---- or ----
-                        LabelledDivider(label: "or")
-                        
-                        Text("Login with your social media account")
+                                .frame(width: UIScreen.main.bounds.width-80)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(Color("logInBC"))
+                        .cornerRadius(16)
+                        .accentColor(.black)
+                        .padding(.top, 40)
+                    }.disabled(email.isEmpty || password.isEmpty)
+                        .popover(isPresented: $incorrectPassword,
+                                 attachmentAnchor: .point(.center),
+                                 arrowEdge: .top) {
+                            Text("Email or password is incorrect.\nTry again.")
+                                .font(.headline)
+                                .padding()
+                                .presentationCompactAdaptation(.none)
+                        }
+                    
+                    
+                    
+                    
+                    // Reset Password Button
+                    Button(action: forgetPassword){
+                        Text("Forgot Password?")
+                            .font(.footnote)
+                            .foregroundColor(Color("forgotBC"))
+                    }
+                    .padding(.bottom, 40)
+                    
+                    // ---- or ----
+                    LabelledDivider(label: "or")
+                    
+                    Text("Login with your social media account")
+                        .font(.footnote)
+                        .foregroundColor(color)
+                    
+                    // TODO add social media here
+                    
+                    
+                    // Don't have account? Go to Sign Up.
+                    HStack{
+                        Text("Don't have an account?")
                             .font(.footnote)
                             .foregroundColor(color)
                         
-                        // TODO add social media here
-                        
-                        
-                        // Don't have account? Go to Sign Up.
-                        HStack{
-                            Text("Don't have an account?")
+                        // Sign Up Here
+                        NavigationLink(destination: SignupView()) {
+                            Text("Sign up")
                                 .font(.footnote)
-                                .foregroundColor(color)
-                            
-                            // Sign Up Here
-                            NavigationLink(destination: SignupView()) {
-                                Text("Sign up")
-                                    .font(.footnote)
-                                    .bold()
-                                    .foregroundColor(Color(forgotBC))
-                            }
-                        }.padding(.top, 80)
-                        
-                    } // outer VStack
-                    Spacer()
-                } // HStack
-                Spacer()
-            } // Final VStack
-        }.ignoresSafeArea(.keyboard, edges: .bottom) // ZStack
+                                .bold()
+                                .foregroundColor(Color(forgotBC))
+                        }
+                    }
+                    .padding(.top, 80)
+                } // ScrollView
+                .padding(.horizontal, 40)
+            }
+        } // ZStack
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .toolbarBackground(Color("skyBlue"), for: .navigationBar)
 
     }
     
@@ -138,6 +142,7 @@ struct LoginView: View {
             } else {
                 print("Fail Login")
                 // Display an error message or handle unsuccessful login.
+                incorrectPassword = true
             }
         }
     }

@@ -59,4 +59,25 @@ struct LabelledDivider: View {
 }
 
 
+// ViewModifier
 
+struct TextInput: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .disableAutocorrection(true)
+            .background {
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.white)
+            }
+    }
+}
+
+
+extension View {
+    func textInput() -> some View {
+        modifier(TextInput())
+    }
+}

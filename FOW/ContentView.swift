@@ -19,7 +19,7 @@ struct ContentView: View {
     
     // GIF file name
     let gifFile = "duck"
-    
+     
     var body: some View {
         
         // Check if user is logged in or not.
